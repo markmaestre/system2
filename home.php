@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manila Technician Institute Computer Society</title>
+    <title>BrainGym</title>
     <style>
         body {
             margin: 0;
@@ -180,11 +180,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
     <div class="header">
-        <img src="img/mtics.png" alt="MTICS Logo">
-        <h1>Manila Technician Institute Computer Society</h1>
+        <img src="img/logos.jpg" alt="BrainGym Logo">
+        <h1>BrainGym</h1>
     </div>
 
-    <h2 class="module-title">Students Access Module</h2>
+    
 
     <div class="login-container">
         <h3>User Authentication</h3>
@@ -212,10 +212,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <br><br><br>
-    <a>------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</a>
+    <a>---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</a>
     <div class="contact-info">
         <hr>
-        <p>For questions and comments, email us at <a href="mailto:mtics@tup.edu.ph">mtics@tup.edu.ph</a></p>
+        <p>For questions and comments, email us at <a href="mailto:BrainGym@gmail.com">BrainGym@gmail.com</a></p>
     </div>
 
 </body>

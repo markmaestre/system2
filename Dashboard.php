@@ -126,7 +126,7 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                 </button>
                 <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
                     <h3 class="text-success">
-                        <img src="img/mtics.png" width="40" />
+                        <img src="img/logos.jpg" width="40" />
                         <span class="text-info">Admin</span>
                     </h3>
                 </a>
@@ -161,7 +161,7 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="bi bi-cash-stack"></i> Income
+                                <i class="bi bi-controller"></i> Games
                             </a>
                         </li>
                         <li class="nav-item">
@@ -169,14 +169,10 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                                 <i class="bi bi-person"></i> Users
                             </a>
                         </li>
+                    
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="bi bi-book"></i> Library
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="bi bi-file-earmark-text"></i> Posts
+                                <i class="bi bi-star-fill"></i> Raitings
                             </a>
                         </li>
                     </ul>
@@ -210,8 +206,8 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                     <div class="row align-items-center">
                         <div class="col-12 ">
                             <div class="header-title">
-                                <img src="img/mtics.png" width="40" alt="Logo"/>
-                                <h1 class="h2 mb-0 ls-tight">Information and Assurance and Security 2</h1>
+                              
+                                <h1 class="h2 mb-0 ls-tight">BrainGym</h1>
                             </div>
                         </div>
                     </div>
@@ -219,9 +215,7 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                         <li class="nav-item">
                             <a href="#" class="nav-link active">All</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link font-regular">Income</a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a href="#" class="nav-link font-regular">Events</a>
                         </li>
@@ -236,11 +230,11 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Budget</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Raitings</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
-                                                <i class="bi bi-credit-card"></i>
+                                                <i class="bi bi-star-fill"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -255,11 +249,11 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Events</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Future Events</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
-                                                <i class="bi bi-clock-history"></i>
+                                                <i class="bi bi-calendar-event"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -300,11 +294,11 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Library</span>
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Future games</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
-                                                <i class="bi bi-cash"></i>
+                                                <i class="bi bi-controller"></i>
                                             </div>
                                         </div>
                                     </div>

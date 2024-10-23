@@ -165,10 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <div class="header">
-        <img src="img/mtics.png" alt="MTICS Logo">
-        <h1>Manila Technician Institute Computer Society</h1>
-    </div>
+   
 
     <h2 class="module-title">User Registration - Step 3</h2>
 

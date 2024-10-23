@@ -11,144 +11,395 @@ $userImage = 'img/default-image.svg';
 
 $conn = mysqli_connect('localhost', 'root', '', 'maestre') or die('Connection failed');
 
-
 $query = "SELECT profile_picture FROM users WHERE username = '$username'";
 $result = mysqli_query($conn, $query);
 
 if ($row = mysqli_fetch_assoc($result)) {
-
-    $userImage = 'img/' . $row['profile_picture']; 
+    $userImage = 'img/' . $row['profile_picture'];
 }
 
 mysqli_close($conn);
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/user.css">
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
-    <script defer src="js/main.js"></script>
-    <title>USER Dashboard</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet" />
     <style>
-        body {
-            background: linear-gradient(to right, white, skyblue);
-            margin: 0;
-            padding: 0;
-            height: 100vh;
+        .bg-surface-secondary {
+            background-color: skyblue !important;
         }
-        header {
-            background: linear-gradient(to right, white, skyblue);
+        .navbar-vertical .nav-link {
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
-        .navbar-brand img {
-            max-height: 50px; 
-            width: auto;
-            margin-right: 10px; 
+        .navbar-vertical .nav-link i {
+            font-size: 1.5rem;
         }
-        .profile img {
-            border-radius: 50%;
-            max-height: 50px;
-            max-width: 50px;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .navbar-vertical {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-align: center;
+        }
+        header.bg-surface-primary {
+            background: linear-gradient(to bottom, white, white 35%, skyblue 100%);
+        }
+        .header-title img {
+            width: 40px;
+        }
+        .bg-light-maroon {
+            background-color: #d96b7c;
+        }
+        .text-light-maroon {
+            color: #d96b7c;
+        }
+        .card-icon {
+            background-color: #d96b7c;
         }
     </style>
-    <script>
-        function confirmLogout(event) {
-            event.preventDefault(); 
-            if (confirm("Do you want to logout?")) {
-                window.location.href = event.target.href; 
-            }
-         
-        }
-    </script>
 </head>
-<body class="light-theme dark-theme">
-    <header>
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="header-inner d-flex justify-content-between align-items-center">
-                    <a class="navbar-brand flex-shrink-0" href="#">
-                        <img src="img/mtics.png" alt="logo-image" class="img-fluid">
-                        MTICS
-                    </a>
-                    <div class="header-content d-flex align-items-center justify-content-end">
-                        <form class="d-flex justify-content-end align-items-center">
-                            <div class="search-icon">
-                                <i class="fa fa-search" aria-hidden="true"></i>
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+<body>
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light border-bottom border-bottom-lg-0 border-end-lg" id="navbarVertical">
+            <div class="container-fluid">
+                <button class="navbar-toggler ms-n2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
+                    <h3 class="text-success">
+                        <img src="<?php echo $userImage; ?>" width="40" class="rounded-circle" />
+                        <span class="text-info"><?php echo $username; ?></span>
+                    </h3>
+                </a>
+                <div class="navbar-user d-lg-none">
+                    <div class="dropdown">
+                        <a href="#" id="sidebarAvatar" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="avatar-parent-child">
+                                <img alt="User Image" src="<?php echo $userImage; ?>" class="avatar avatar- rounded-circle" />
+                                <span class="avatar-child avatar-badge bg-success"></span>
                             </div>
-                        </form>
-                        <a href="#" class="profile">
-                            <img src="<?php echo htmlspecialchars($userImage); ?>" alt="user-image"> <?php echo htmlspecialchars($username); ?>
                         </a>
-                        <a href="#" class="notification">
-                            <i class="fa fa-bell" aria-hidden="true"></i>
-                        </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="sidebarAvatar">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Billing</a>
+                            <hr class="dropdown-divider" />
+                            <a href="home.php" class="dropdown-item">Logout</a>
+                        </div>
                     </div>
                 </div>
-                <button class="hamburger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </nav>
-        </div>
-    </header>
-    <div class="nft-store">
-        <div class="container-fluid">
-            <div class="nft-store-inner d-flex">
-                <div class="menu-links">
-                    <ul>
-                        <li class="nav-item active">
-                            <a href="#" class="d-flex align-items-center nav-link">
-                                <i class="fa fa-home" aria-hidden="true"></i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-                      
+                <div class="collapse navbar-collapse" id="sidebarCollapse">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="#" class="d-flex align-items-center nav-link">
-                                <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                <span>Events</span>
+                            <a class="nav-link" href="memory.php">
+                                <i class="bi bi-battery"></i> Memory
                             </a>
                         </li>
-                        
+                        <br>
+               
+                        <li class="nav-item">
+                            <a class="nav-link" href="reasoning.php">
+                                <i class="bi bi-lightbulb"></i> Reasoning
+                            </a>
+                        </li>
+                        <br>
                        
                         <li class="nav-item">
-                            <a href="#" class="d-flex align-items-center nav-link">
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <span>Task</span>
+                            <a class="nav-link" href="attention.php">
+                                <i class="bi bi-eye"></i> Attention
                             </a>
                         </li>
-
+                        <br>
+                
                         <li class="nav-item">
-                            <a href="#" class="d-flex align-items-center nav-link">
-                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                <span>Settings</span>
+                            <a class="nav-link" href="coordination.php">
+                                <i class="bi bi-arrows-move"></i> Coordination
                             </a>
                         </li>
+                        <br>
+                    
+                    </ul>
+                    <hr class="navbar-divider my-5 opacity-20" />
+                    <div class="mt-auto">
+                        <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="logout.php" class="d-flex align-items-center nav-link" onclick="confirmLogout(event)">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                <span>Logout</span>
-                            </a>
+    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#accountModal">
+        <i class="bi bi-person-square"></i> Account
+    </a>
+</li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="home.php" onclick="return confirm('Are you sure you want to logout?')">
+                                    <i class="bi bi-box-arrow-right"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+            <header class="bg-surface-primary border-bottom pt-6">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="header-title">
+                                <h1 class="h2 mb-0 ls-tight">BrainGym</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs mt-4 overflow-x border-0">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link font-regular">Events</a>
                         </li>
                     </ul>
                 </div>
-                <div class="nft-store-content">
-                    <div class="nft-up-content">
-                      
-               <h1  style = "text-align:center; color:black;">hellow,world</h1>
+            </header>
+            <main class="py-6 bg-surface-secondary">
+                <div class="container-fluid">
+                    <div class="row g-6 mb-6">
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card shadow border-0 bg-light-maroon" data-bs-toggle="modal" data-bs-target="#memoryModal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Memory</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
+                                                <i class="bi bi-battery"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm"></div>
+                                </div>
+                            </div>
+                        </div>
 
+  
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card shadow border-0 bg-light-maroon" data-bs-toggle="modal" data-bs-target="#reasoningModal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Reasoning</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
+                                                <i class="bi bi-lightbulb"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+
+               
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card shadow border-0 bg-light-maroon" data-bs-toggle="modal" data-bs-target="#attentionModal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Attention</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
+                                                <i class="bi bi-eye"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    
+                        <div class="col-xl-3 col-sm-6 col-12">
+                            <div class="card shadow border-0 bg-light-maroon" data-bs-toggle="modal" data-bs-target="#coordinationModal">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <span class="h6 font-semibold text-muted text-sm d-block mb-2">Coordination</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="icon icon-shape card-icon text-white text-lg rounded-circle">
+                                                <i class="bi bi-arrows-move"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-sm"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="memoryModal" tabindex="-1" aria-labelledby="memoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memoryModalLabel">Memory Guidelines & Games</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Guidelines:</h6>
+                    <p>Here are the guidelines for memory games...</p>
+                    <h6>Available Games:</h6>
+                    <ul>
+                        <li>Memory Game 1</li>
+                        <li>Memory Game 2</li>
+                    </ul>
+                    <h6>What You Can Learn:</h6>
+                    <p>Improves your memory retention and cognitive skills...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
+
+    
+    <div class="modal fade" id="reasoningModal" tabindex="-1" aria-labelledby="reasoningModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reasoningModalLabel" style = text-align:center>Reasoning Guidelines & Games</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Guidelines:</h6>
+                    <p>Here are the guidelines for reasoning games...</p>
+                    <h6>Available Games:</h6>
+                    <ul>
+                        <li>Math Quiz</li>
+                        <li>Philippines Trivia</li>
+                    </ul>
+                    <h6>What You Can Learn:</h6>
+                    <p>Enhances your critical thinking and decision-making skills...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id="attentionModal" tabindex="-1" aria-labelledby="attentionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="attentionModalLabel">Attention Guidelines & Games</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Guidelines:</h6>
+                    <p>Here are the guidelines for attention games...</p>
+                    <h6>Available Games:</h6>
+                    <ul>
+                        <li>Follow the Dot</li>
+                        <li>Number Memory Test</li>
+                    </ul>
+                    <h6>What You Can Learn:</h6>
+                    <p>Boosts your concentration and focus skills...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="modal fade" id="coordinationModal" tabindex="-1" aria-labelledby="coordinationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="coordinationModalLabel">Coordination Guidelines & Games</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Guidelines:</h6>
+                    <p>Here are the guidelines for coordination games...</p>
+                    <h6>Available Games:</h6>
+                    <ul>
+                        <li>Ball Dodge</li>
+                        <li>Balance The Ball</li>
+                    </ul>
+                    <h6>What You Can Learn:</h6>
+                    <p>Improves your hand-eye coordination and motor skills...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="accountModal" tabindex="-1" aria-labelledby="accountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accountModalLabel">Manage Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img src="<?php echo $userImage; ?>" width="80" class="rounded-circle mb-3" alt="User Image">
+                        <h6><?php echo $username; ?></h6>
+                    </div>
+                    <form action="account_update.php" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Change Profile Picture</label>
+                            <input class="form-control" type="file" id="profilePicture" name="profile_picture">
+                        </div>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                    <hr>
+                    <form action="account_delete.php" method="POST">
+                        <button type="submit" class="btn btn-danger w-100">Delete Account</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
