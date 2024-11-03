@@ -143,7 +143,7 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                             <a href="#" class="dropdown-item">Settings</a>
                             <a href="#" class="dropdown-item">Billing</a>
                             <hr class="dropdown-divider" />
-                            <a href="home.php" class="dropdown-item">Logout</a>
+                            <a href="login.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ $user_percentage_color = $user_percentage_change >= 0 ? 'success' : 'danger';
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="bi bi-controller"></i> Games
+                                <i class="bi bi-controller"></i> product
                             </a>
                         </li>
                         <li class="nav-item">

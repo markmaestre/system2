@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_query($conn, $register_query)) {
             $_SESSION = array(); 
-            header("Location: home.php");
+            header("Location: login.php");
             exit();
         } else {
             $error_message = "Registration failed. Please try again.";

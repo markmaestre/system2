@@ -71,7 +71,7 @@ session_destroy();
         <h1>Game Over</h1>
         <p>Your final score: <?php echo $finalScore; ?></p>
         <p>Thank you for playing!</p>
-        <a href="home.php" class="button">Back to Home</a>
+        <a href="attention..php" class="button">Back to Home</a>
         <a href="attention.php" class="button">Play Again</a>
     </div>
 </body>

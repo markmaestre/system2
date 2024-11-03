@@ -69,14 +69,14 @@
         <div class="row">
           
             <div class="col-md-6 game-option">
-                <h2>Memory Game 1</h2>
+                <h2>Match Card</h2>
                 <a class="btn btn-primary" href="game1.php">Easy  Start  </a><br>
                 <button class="btn btn-info mt-2" data-bs-toggle="modal" data-bs-target="#guideGame1Modal">Guides</button>
             </div>
 
           
             <div class="col-md-6 game-option">
-                <h2>Memory Game 2</h2>
+                <h2>Match Card</h2>
                 <a class="btn btn-primary" href="game2.php">Medium Start</a>
                 <button class="btn btn-info mt-2" data-bs-toggle="modal" data-bs-target="#guideGame2Modal">Guides</button>
             </div>

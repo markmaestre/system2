@@ -107,7 +107,7 @@ mysqli_close($conn);
                             <a href="#" class="dropdown-item">Settings</a>
                             <a href="#" class="dropdown-item">Billing</a>
                             <hr class="dropdown-divider" />
-                            <a href="home.php" class="dropdown-item">Logout</a>
+                            <a href="login.php" class="dropdown-item">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -151,7 +151,7 @@ mysqli_close($conn);
     </a>
 </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="home.php" onclick="return confirm('Are you sure you want to logout?')">
+                                <a class="nav-link" href="login.php" onclick="return confirm('Are you sure you want to logout?')">
                                     <i class="bi bi-box-arrow-right"></i> Logout
                                 </a>
                             </li>
